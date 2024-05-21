@@ -61,5 +61,5 @@ export default async function plugin() {
   const context = await setup();
 
   // Add your plugin logic here
-  context.logger.info("Hello, World!");
+  context.logger.info("Hello, This is a Test!");
 }
