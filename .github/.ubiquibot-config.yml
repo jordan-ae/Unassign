@@ -1,13 +1,32 @@
+timers:
+  reviewDelayTolerance: "1 day"
+  taskStaleTimeoutDuration: "3 weeks"
+disabledCommands:
+  - start
+labels:
+  time:
+    - "Time: <1 Hour"
+    - "Time: <2 Hours"
+    - "Time: <4 Hours"
+    - "Time: <1 Day"
+    - "Time: <1 Week"
+  priority:
+    - "Priority: 1 (Normal)"
+    - "Priority: 2 (Medium)"
+    - "Priority: 3 (High)"
+    - "Priority: 4 (Urgent)"
+    - "Priority: 5 (Emergency)"
+miscellaneous:
+  maxConcurrentTasks: 3
+
 plugins:
   issue_comment.created: # or any other event
     - uses: # sequence of plugins to run
-        - plugin: jordan-ae>/Unassign:compute.yml@development
-          name: Unassign
-          id: unassign-command
+        - plugin: jordan-ae/Unassign:compute.yml@development
+          name: wildcard-unassign
+          id: wildcard-unassign-command
           type: github
-          description: "Plugin description"
-          command: "<regex for command>" # if applicable
-          example: "<example usage>" # if applicable
+          description: "Unassigns inactive contributors from task and deducts XP"
           with: # below is an example, cater to your plugin's needs
             disabledCommands: []
             timers:
