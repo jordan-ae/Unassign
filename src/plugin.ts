@@ -6,13 +6,13 @@ import { createAdapters } from "./adapters";
 import { Database } from "./adapters/supabase/types/database";
 import { Context } from "./types/context";
 import { envSchema } from "./types/env";
-import { pluginSettingsSchema, PluginInputs } from "./types/plugin-inputs";
+import { wildCardUnassignSchema, PluginInputs } from "./types/plugin-inputs";
 
 async function setup() {
   const payload = github.context.payload.inputs;
 
   const env = Value.Decode(envSchema, process.env);
-  const settings = Value.Decode(pluginSettingsSchema, JSON.parse(payload.settings));
+  const settings = Value.Decode(wildCardUnassignSchema, JSON.parse(payload.settings));
 
   const inputs: PluginInputs = {
     stateId: payload.stateId,
